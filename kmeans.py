@@ -47,5 +47,3 @@ class MRKMeans(MRJob):
 
 if __name__ == '__main__':
     MRKMeans.run()
-
-
