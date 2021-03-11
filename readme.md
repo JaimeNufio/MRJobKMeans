@@ -18,10 +18,6 @@ Upload the input file to the input directory in HDFS
 
 Run `$ hdfs dfs -put ./input.txt hdfs:/user/jaime/allPoints`
 
-Create Output directory
-
-Run `$ hdfs dfs -rmdir /user/jaime/newCluster`
-
 
 ## Run:
 Run Python job in Hadoop:
