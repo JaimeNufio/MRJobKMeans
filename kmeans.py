@@ -12,8 +12,8 @@ class MRKMeans(MRJob):
     def mapper_init(self):
         self.centroids = []
         with open(self.options.ctd,'r') as f:
-            for i in range(3):
-                cent = f.readline().split(",")
+            for line in f:
+                cent = line.split(",")
                 self.centroids.append( (int(cent[0]),int(cent[1])) )
 
     def dist(self,v1,v2):
@@ -37,13 +37,23 @@ class MRKMeans(MRJob):
         X = int(X)
         Y = int(Y)
 
-        yield self.classify(self.centroids,(X,Y)),"({},{})".format(X,Y)
+        yield self.classify(self.centroids,(X,Y)),"{},{}".format(X,Y)
 
     def reducer(self, K, pairs):
         All = ""
+        SumX = 0
+        SumY = 0
+        Num = 0
+
         for item in pairs:
-            All+=item+" "
-        yield K,All#(list(pair))
+            pair = item.split(",")
+            SumX = int(pair[0])
+            SumY = int(pair[1])
+            Num+=1
+
+        yield K, "({},{})".format(SumX/Num,SumY/Num)
+
+        #yield K,(list(pair))
 
 if __name__ == '__main__':
     MRKMeans.run()
