@@ -47,8 +47,8 @@ class MRKMeans(MRJob):
 
         for item in pairs:
             pair = item.split(",")
-            SumX = int(pair[0])
-            SumY = int(pair[1])
+            SumX += int(pair[0])
+            SumY += int(pair[1])
             Num+=1
 
         yield K, "({},{})".format(SumX/Num,SumY/Num)
