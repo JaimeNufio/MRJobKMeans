@@ -13,7 +13,7 @@ class MRKMeans(MRJob):
         self.centroids = []
         with open(self.options.ctd,'r') as f:
             for i in range(3):
-                cent = f.readline().split(",");
+                cent = f.readline().split(",")
                 self.centroids.append( (int(cent[0]),int(cent[1])) )
 
     def dist(self,v1,v2):
